@@ -1,0 +1,380 @@
+/* ================================
+   Global Styles & Design System
+================================ */
+
+/* Typography & Font Family */
+:root {
+  --font-family-base: ui-sans-serif, -apple-system, system-ui;
+  --color-primary: #00b7ed;
+  --color-secondary: #5d5d5d;
+  --color-text: #212529;
+  --color-bg: #f9f9f9;
+  --color-border: rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* ================================
+   Typography Utilities
+================================ */
+
+.hero-title {
+  font-family: var(--font-family-base);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.hero-subtitle {
+  font-family: var(--font-family-base);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-secondary);
+}
+
+.section-title {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-text {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.logo-text {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+}
+
+/* ================================
+   Button Styles
+================================ */
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0095c7;
+  border-color: #0095c7;
+  color: white;
+}
+
+.btn-primary:focus {
+  background-color: #0095c7;
+  border-color: #0095c7;
+  box-shadow: 0 0 0 0.25rem rgba(0, 183, 237, 0.25);
+}
+
+.btn-outline-primary {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 16px;
+  border-radius: 0.5rem;
+}
+
+/* ================================
+   Form Styles
+================================ */
+
+.form-control {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  border-color: var(--color-border);
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.25rem rgba(0, 183, 237, 0.25);
+}
+
+.form-label {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+/* ================================
+   Card Styles
+================================ */
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+.auth-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   Navbar Styles
+================================ */
+
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+}
+
+.navbar-nav .nav-link {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-secondary);
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--color-primary);
+}
+
+/* ================================
+   Footer Styles
+================================ */
+
+.footer {
+  background-color: white;
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.footer-text {
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--color-secondary);
+}
+
+.footer a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--color-primary);
+}
+
+/* ================================
+   Hero Section
+================================ */
+
+.hero-section {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  flex-grow: 1;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ================================
+   Authentication Pages
+================================ */
+
+.auth-container {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-title {
+  font-family: var(--font-family-base);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.auth-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #0095c7;
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+/* ================================
+   Utility Classes
+================================ */
+
+.text-muted-secondary {
+  color: var(--color-secondary);
+}
+
+.border-subtle {
+  border-color: var(--color-border);
+}
+
+/* ================================
+   Responsive Design
+================================ */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .hero-section {
+    padding: 3rem 1.25rem;
+    min-height: calc(100vh - 100px);
+  }
+
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .footer {
+    padding: 1.5rem 0;
+  }
+
+  .footer-text {
+    font-size: 11px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 28px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .hero-section {
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 80px);
+  }
+
+  .hero-cta {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .btn-lg {
+    padding: 0.65rem 1.5rem;
+    font-size: 15px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .navbar-brand {
+    font-size: 16px;
+  }
+
+  .footer .col-md-6 {
+    text-align: center !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer .col-md-6:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .navbar-brand {
+    font-size: 15px;
+  }
+}
