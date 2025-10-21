@@ -43,8 +43,9 @@ export default {
       if (response.code) {
         const result = await this.authStore.handleGoogleAuth(response.code)
 
-        if (!result.success) {
-          // Handle error - show user-friendly message
+        if (result.success) {
+          window.location.href = import.meta.env.VITE_APP_URL
+        } else {
           console.error('Login failed:', result.error)
           alert('Login failed: ' + result.error)
         }

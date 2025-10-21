@@ -3,9 +3,9 @@ import { googleLogin } from '@/api/api'
 
 export default defineStore('auth', {
   state: () => ({
-    token: localStorage.getItem('authToken') || null,
-    user: JSON.parse(localStorage.getItem('user')) || null,
-    isAuthenticated: !!localStorage.getItem('authToken'),
+    token: null,
+    user: null,
+    isAuthenticated: false,
   }),
 
   actions: {
@@ -25,9 +25,9 @@ export default defineStore('auth', {
     },
 
     checkAuth() {
-      const token = localStorage.getItem('authToken')
-      if (token) {
-        this.token = token
+      const cookieMatch = document.cookie.match(/authToken=([^;]+)/)
+      if (cookieMatch) {
+        this.token = cookieMatch[1]
         this.isAuthenticated = true
       }
     },
@@ -37,14 +37,9 @@ export default defineStore('auth', {
       this.user = user
       this.isAuthenticated = true
 
-      localStorage.setItem('authToken', token)
-      localStorage.setItem('user', JSON.stringify(user))
-
       const domain = import.meta.env.VITE_COOKIE_DOMAIN
       const maxAge = 30 * 24 * 60 * 60
       document.cookie = `authToken=${token}; domain=${domain}; path=/; SameSite=Lax; max-age=${maxAge}`
-
-      window.location.href = import.meta.env.VITE_APP_URL
     },
   },
 })
