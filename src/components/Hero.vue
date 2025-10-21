@@ -11,10 +11,12 @@
             </p>
 
             <div class="hero-cta">
-              <button class="btn btn-google btn-lg" @click="handleGoogleAuth">
-                <i class="bi bi-google me-2"></i>
-                Continue with Google
-              </button>
+              <GoogleLogin :callback="handleGoogleLogin">
+                <button class="btn btn-google btn-lg">
+                  <i class="bi bi-google me-2"></i>
+                  Continue with Google
+                </button>
+              </GoogleLogin>
             </div>
           </div>
         </div>
@@ -24,17 +26,32 @@
 </template>
 
 <script>
+import { GoogleLogin } from 'vue3-google-login'
 import { mapStores } from 'pinia'
 import useAuthStore from '@/stores/auth'
 
 export default {
   name: 'Hero',
+  components: {
+    GoogleLogin,
+  },
   computed: {
     ...mapStores(useAuthStore),
   },
   methods: {
-    async handleGoogleAuth() {
-      await this.authStore.googleAuth()
+    async handleGoogleLogin(response) {
+      if (response.code) {
+        const result = await this.authStore.handleGoogleAuth(response.code)
+
+        if (!result.success) {
+          // Handle error - show user-friendly message
+          console.error('Login failed:', result.error)
+          alert('Login failed: ' + result.error)
+        }
+      } else if (response.error) {
+        console.error('Google OAuth error:', response.error)
+        alert('Google login was cancelled or failed.')
+      }
     },
   },
 }

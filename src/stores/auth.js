@@ -1,44 +1,27 @@
 import { defineStore } from 'pinia'
+import { googleLogin } from '@/api/api'
 
-export const useAuthStore = defineStore('auth', {
+export default defineStore('auth', {
   state: () => ({
     token: localStorage.getItem('authToken') || null,
-    user: null,
-    isAuthenticated: false,
+    user: JSON.parse(localStorage.getItem('user')) || null,
+    isAuthenticated: !!localStorage.getItem('authToken'),
   }),
 
-  getters: {
-    isLoggedIn: (state) => !!state.token,
-  },
-
   actions: {
-    async googleAuth() {
-      // TODO: Implement Google OAuth flow
-      // For now, this is a placeholder
-      console.log('Initiating Google OAuth flow...')
+    async handleGoogleAuth(authorizationCode) {
+      try {
+        const result = await googleLogin(authorizationCode)
 
-      // Future implementation:
-      // 1. Redirect to Google OAuth consent screen
-      // 2. Handle callback with authorization code
-      // 3. Exchange code for tokens with backend
-      // 4. Store token and redirect to app
-
-      // Placeholder redirect to app (remove when implementing real OAuth)
-      // window.location.href = 'http://localhost:3001'
-
-      return { success: false, error: 'Google OAuth not yet implemented' }
-    },
-
-    logout() {
-      this.token = null
-      this.user = null
-      this.isAuthenticated = false
-
-      // Clear token from localStorage
-      localStorage.removeItem('authToken')
-
-      // Redirect to home
-      window.location.href = '/'
+        if (result.success) {
+          this.setAuthData(result.data.token, result.data.user)
+          return { success: true }
+        } else {
+          return { success: false, error: result.error }
+        }
+      } catch (error) {
+        return { success: false, error: 'Authentication failed' }
+      }
     },
 
     checkAuth() {
@@ -54,13 +37,14 @@ export const useAuthStore = defineStore('auth', {
       this.user = user
       this.isAuthenticated = true
 
-      // Store token in localStorage
       localStorage.setItem('authToken', token)
+      localStorage.setItem('user', JSON.stringify(user))
 
-      // Redirect to main application
-      window.location.href = 'http://localhost:3001'
+      const domain = import.meta.env.VITE_COOKIE_DOMAIN
+      const maxAge = 30 * 24 * 60 * 60
+      document.cookie = `authToken=${token}; domain=${domain}; path=/; SameSite=Lax; max-age=${maxAge}`
+
+      window.location.href = import.meta.env.VITE_APP_URL
     },
   },
 })
-
-export default useAuthStore
