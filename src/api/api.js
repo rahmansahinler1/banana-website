@@ -1,4 +1,24 @@
-const API_BASE_URL = 'http://127.0.0.1:8000/api/v1'
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api/v1`
+
+async function fetchWithAuth(url, options = {}) {
+  const defaultOptions = {
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  }
+
+  const response = await fetch(url, { ...defaultOptions, ...options })
+
+  if (response.status === 401) {
+    const domain = import.meta.env.VITE_COOKIE_DOMAIN
+    document.cookie = `authToken=; domain=${domain}; path=/; max-age=0`
+    throw new Error('Authentication required')
+  }
+
+  return response
+}
 
 export async function googleLogin(code) {
   try {
