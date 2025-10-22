@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
           <div class="hero-content">
-            <h1 class="hero-title mb-4">Welcome to Banana</h1>
+            <h1 class="hero-title mb-4">Welcome to Unmarble</h1>
             <p class="hero-subtitle mb-5">
               Transform your design workflow with our powerful AI-powered platform. Create stunning
               visuals in seconds.

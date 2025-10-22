@@ -1,2 +1,2 @@
-# banana-website
-website for sample banana application made with vue3
+# unmarble-website
+website for sample unmarble application made with vue3

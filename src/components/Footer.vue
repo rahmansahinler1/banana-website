@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
-          <p class="footer-text mb-0">&copy; 2025 Banana. All rights reserved.</p>
+          <p class="footer-text mb-0">&copy; 2025 Unmarble. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
           <p class="footer-text mb-0">
